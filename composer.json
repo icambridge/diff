@@ -1,0 +1,17 @@
+{
+    "name": "icambridge/diff",
+    "type": "library",
+    "description": "Diff library",
+    "keywords": ["diff"],
+    "require-dev": {
+        "hackpack/hackunit": "*"
+    },
+    "config": {
+        "bin-dir": "bin/"
+    },
+    "autoload": {
+        "psr-4": {
+            "":"src/"
+        }
+    }
+}
