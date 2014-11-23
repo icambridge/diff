@@ -24,4 +24,17 @@ class DifferTest extends TestCase
         $actual = $differ->diff("bc", "abc");
         $this->expect($actual)->toEqual($expected);
     }
+
+    public function testDifFMapps(): void
+    {
+        $customHeader = "--- Expected\n+++ Actual\n";
+        $expected = $customHeader."@@ @@\n hello => world\n-start => finish\n+start => n\n";
+
+        $differ = new Differ($customHeader);
+        $actual = $differ->diff(
+            Map {"hello" => "world", "start" => "finish"},
+            Map {"hello" => "world", "start" => "n"}
+        );
+        $this->expect($actual)->toEqual($expected);
+    }
 }

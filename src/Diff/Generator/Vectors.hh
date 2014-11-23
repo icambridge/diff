@@ -8,7 +8,7 @@ class Vectors<T> implements Generator
 
     private int $min = 0;
 
-    public function __construct(private array<T> $from, private array<T> $to): void {}
+    public function __construct(private Vector<T> $from, private Vector<T> $to): void {}
 
     public function diff(): string
     {
@@ -46,7 +46,7 @@ class Vectors<T> implements Generator
         return $message;
     }
 
-    private function findProblems(): Vector
+    private function findProblems(): Vector<int>
     {
         $fromLength = count($this->from);
         $toLength = count($this->to);

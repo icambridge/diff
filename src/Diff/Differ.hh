@@ -20,6 +20,8 @@ class Differ<T>
         $expectedType = gettype($expected);
         if($expected instanceof Vector) {
             return new Generator\Vectors($expected, $actual);
+        } else if ($expected instanceof Map) {
+            return new Generator\Maps($expected, $actual);
         } else {
             return new Generator\Generic($expected, $actual);
         }

@@ -10,7 +10,7 @@ class VectorsTest extends TestCase
     public function testOneItemBothDifferent(): void
     {
         $expected = "-hello\n+world\n";
-        $typeDiffer = new Vectors(["hello"], ["world"]);
+        $typeDiffer = new Vectors(Vector{"hello"}, Vector{"world"});
         $actual = $typeDiffer->diff();
         $this->expect($actual)->toEqual($expected);
     }
@@ -18,7 +18,7 @@ class VectorsTest extends TestCase
     public function testTwoItemsFirstDifferent(): void
     {
         $expected = "-1\n+2\n 2\n";
-        $typeDiffer = new Vectors([1,2], [2,2]);
+        $typeDiffer = new Vectors(Vector{1,2}, Vector{2,2});
         $actual = $typeDiffer->diff();
         $this->expect($actual)->toEqual($expected);
     }
@@ -26,7 +26,7 @@ class VectorsTest extends TestCase
     public function testThreeItemsFirstDifferentLastDifferent(): void
     {
         $expected = "-1\n+2\n 2\n-3\n+4\n";
-        $typeDiffer = new Vectors([1,2,3], [2,2,4]);
+        $typeDiffer = new Vectors(Vector{1,2,3}, Vector{2,2,4});
         $actual = $typeDiffer->diff();
         $this->expect($actual)->toEqual($expected);
     }
@@ -34,7 +34,7 @@ class VectorsTest extends TestCase
     public function testJustLastDifferent(): void
     {
         $expected = " 1\n 2\n-3\n+4\n";
-        $typeDiffer = new Vectors([1,2,3], [1,2,4]);
+        $typeDiffer = new Vectors(Vector{1,2,3}, Vector{1,2,4});
         $actual = $typeDiffer->diff();
         $this->expect($actual)->toEqual($expected);
     }
@@ -42,7 +42,7 @@ class VectorsTest extends TestCase
     public function testExtraOnTheEnd(): void
     {
         $expected = " 1\n 2\n-3\n+4\n+5\n+6\n+7\n";
-        $typeDiffer = new Vectors([1,2,3], [1,2,4,5,6,7]);
+        $typeDiffer = new Vectors(Vector{1,2,3}, Vector{1,2,4,5,6,7});
         $actual = $typeDiffer->diff();
         $this->expect($actual)->toEqual($expected);
     }

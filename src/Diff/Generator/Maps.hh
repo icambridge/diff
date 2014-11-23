@@ -12,16 +12,16 @@ class Maps<Tk, Tv> implements Generator
         $usedKeys = Vector{};
         foreach ($this->from as $key => $value) {
             if ($this->to->contains($key) && $this->to[$key] == $value) {
-                $output .= " {$key} => {$value}\n";
+                $output .= " " . (string) $key . " => " . (string) $value . "\n";
                 $usedKeys[] = $key;
             } else {
-                $output .= "-{$key} => $value\n";
+                $output .=  "-" . (string) $key . " => " . (string) $value . "\n";;
             }
         }
 
         foreach ($this->to as $key => $value) {
            if ($usedKeys->linearSearch($key) === -1) {
-                $output .= "+{$key} => $value\n";
+                $output .=  "+" . (string) $key . " => " . (string) $value . "\n";
            }
         }
 
