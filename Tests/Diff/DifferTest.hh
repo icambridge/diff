@@ -24,15 +24,4 @@ class DifferTest extends TestCase
         $actual = $differ->diff("bc", "abc");
         $this->expect($actual)->toEqual($expected);
     }
-
-    public function testDiffReturnsStringVsArrayOutput():void
-    {
-        $string = "Hello World";
-        $array = [];
-        $expected = "--- Original\n+++ New\n@@ @@\n-<string> $string\n+<array>\n";
-
-        $differ = new Differ();
-        $actual = $differ->diff($string, $array);
-        $this->expect($actual)->toEqual($expected);
-    }
 }
