@@ -18,9 +18,9 @@ class Differ<T>
     private function generator(T $expected, T $actual): Generator\Generator
     {
         $expectedType = gettype($expected);
-        if($expected instanceof Vector) {
+        if($expected instanceof Vector && $actual instanceof Vector) {
             return new Generator\Vectors($expected, $actual);
-        } else if ($expected instanceof Map) {
+        } else if ($expected instanceof Map && $actual instanceof Map) {
             return new Generator\Maps($expected, $actual);
         } else {
             return new Generator\Generic($expected, $actual);
