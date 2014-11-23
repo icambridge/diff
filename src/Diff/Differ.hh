@@ -2,11 +2,11 @@
 
 namespace Diff;
 
-class Differ
+class Differ<T>
 {
     public function __construct(private string $header = "--- Original\n+++ New\n") {}
 
-    public function diff(mixed $expected, mixed $actual): string
+    public function diff(T $expected, T $actual): string
     {
         $generator = $this->generator($expected, $actual);
         $message = $generator->diff();
@@ -15,14 +15,11 @@ class Differ
         return $this->header . "@@ @@\n" . $message;
     }
 
-    private function generator(mixed $expected, mixed $actual): Generator\Generator
+    private function generator(T $expected, T $actual): Generator\Generator
     {
         $expectedType = gettype($expected);
-
-        if (gettype($actual) != $expectedType) {
-            return new Generator\Mismatch($expected, $actual);
-        } elseif("array" == $expectedType) {
-            return new Generator\Arrays($expected, $actual);
+        if($expected instanceof Vector) {
+            return new Generator\Vectors($expected, $actual);
         } else {
             return new Generator\Generic($expected, $actual);
         }
